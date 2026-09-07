@@ -60,7 +60,7 @@
 
           <div class="confidentiality-note">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3m-8 0h6m-8 0h10a2 2 0 0 1 2 2v7H5v-7a2 2 0 0 1 2-2Z" /></svg>
-            <p><strong>Your answers stay on this device.</strong> Nothing is sent to Next Generation unless you request a Role Review.</p>
+            <p><strong>Your answers stay on this device.</strong> Nothing is sent to Next Generation unless you request a Role Decision Brief.</p>
           </div>
         </aside>
 
@@ -356,21 +356,25 @@
 
         <section class="review-cta no-print" id="roleReview">
           <div class="cta-copy">
-            <p class="eyebrow">Complimentary Role Review</p>
-            <h3>Want a second view on this role?</h3>
-            <p>We will spend 15 minutes looking at one role with you and send back a clear one-page summary of what may need to stay, change or be developed.</p>
+            <p class="eyebrow">Complimentary Role Decision Brief</p>
+            <h3>Turn this result into a decision you can use.</h3>
+            <p>Bring us one important role. In a focused 15-minute review, we will challenge the assumptions behind it and send you a practical one-page brief within two working days.</p>
+            <p class="offer-distinction"><strong>The online result is the starting point.</strong> The brief adds human challenge and current talent-market evidence to your specific role.</p>
             <ul>
-              <li>You do not need an open vacancy</li>
-              <li>There is no recruitment commitment</li>
-              <li>You leave with a useful written summary</li>
+              <li>What work to protect, improve, automate or stop</li>
+              <li>Which capabilities to develop—and which to recruit</li>
+              <li>A clear Keep, Update or Rethink recommendation</li>
+              <li>A talent-market reality check: availability, likely scarcity and adjacent profiles</li>
             </ul>
+            <p class="offer-note"><strong>No preparation or open vacancy is needed.</strong> There is no recruitment commitment.</p>
           </div>
 
           <form
+            id="reviewForm"
             class="review-form"
             name="role-review"
             method="POST"
-            action="./thanks.html"
+            action="./index.html?submitted=true#roleReview"
             data-netlify="true"
             netlify-honeypot="bot-field"
           >
@@ -396,16 +400,22 @@
               <input name="role" id="formRole" type="text" required />
             </label>
             <label class="field field-wide">
-              <span>The main question to discuss</span>
-              <textarea name="priority" id="formPriority" rows="3"></textarea>
+              <span>What decision are you trying to make? <small>(optional)</small></span>
+              <textarea name="priority" id="formPriority" rows="3" placeholder="For example: recruit the role as it stands, develop someone internally, or redesign it first?"></textarea>
             </label>
             <label class="consent-field field-wide">
               <input type="checkbox" name="consent" required />
-              <span>I am happy for Next Generation to contact me about this Role Review. <a href="./privacy.html">How this tool handles my information</a>.</span>
+              <span>I am happy for Next Generation to contact me about this Role Decision Brief. <a href="./privacy.html">How this tool handles my information</a>.</span>
             </label>
-            <button class="button button-primary field-wide" type="submit">Request my Role Review <span aria-hidden="true">→</span></button>
-            <small class="field-wide form-privacy">Only the details in this form are sent. Your other answers stay on your device.</small>
+            <button class="button button-primary field-wide" type="submit">Request my one-page brief <span aria-hidden="true">→</span></button>
+            <small class="field-wide form-privacy">We send the contact details, role and result shown here. Your question-by-question answers and task map stay on your device.</small>
           </form>
+
+          <div class="review-status" id="reviewFormStatus" role="status" aria-live="polite" tabindex="-1" hidden>
+            <p class="eyebrow">Request received</p>
+            <h4>Your role brief is the next step.</h4>
+            <p>We will contact you to arrange the focused 15-minute review. Your assessment result remains on this page and on this device.</p>
+          </div>
         </section>
 
         <section class="research-section">
@@ -442,7 +452,7 @@
 
         <div class="end-actions no-print">
           <button class="text-button" id="resetBottom" type="button">Check another role</button>
-          <a class="button button-dark" href="#roleReview">Request a Role Review</a>
+          <a class="button button-dark" href="#roleReview">Request my decision brief</a>
         </div>
       </section>
     </main>

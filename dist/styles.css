@@ -1490,6 +1490,11 @@ summary:focus-visible,
   color: var(--ink-soft);
 }
 
+.cta-copy .offer-distinction {
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
 .cta-copy ul {
   margin: 28px 0 0;
   padding: 0;
@@ -1508,6 +1513,13 @@ summary:focus-visible,
 .cta-copy li::before {
   content: "✓";
   font-weight: 900;
+}
+
+.cta-copy .offer-note {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(17, 18, 15, 0.16);
+  font-size: 0.82rem;
 }
 
 .review-form {
@@ -1542,6 +1554,32 @@ summary:focus-visible,
   color: rgba(17, 18, 15, 0.68);
   font-size: 0.7rem;
   line-height: 1.45;
+}
+
+.review-status {
+  align-self: center;
+  padding: clamp(28px, 4vw, 44px);
+  border: 1px solid rgba(17, 18, 15, 0.14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.78);
+  outline: none;
+}
+
+.review-status h4 {
+  margin: 10px 0 14px;
+  font-size: clamp(1.55rem, 2.6vw, 2.25rem);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.review-status p:last-child {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.review-status.is-error {
+  border-color: rgba(159, 53, 30, 0.35);
+  background: #fff8f4;
 }
 
 .honeypot {

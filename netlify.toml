@@ -14,3 +14,9 @@
   from = "/role-readiness"
   to = "/index.html"
   status = 200
+
+[[redirects]]
+  from = "/thanks.html"
+  to = "/?submitted=true"
+  status = 302
+  force = true

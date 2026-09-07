@@ -512,6 +512,52 @@ function resetAssessment() {
   history.replaceState(null, "", location.pathname);
 }
 
+const reviewForm = document.querySelector("#reviewForm");
+const reviewStatus = document.querySelector("#reviewFormStatus");
+const reviewSuccessMarkup = reviewStatus.innerHTML;
+
+function showReviewConfirmation() {
+  reviewStatus.classList.remove("is-error");
+  reviewStatus.innerHTML = reviewSuccessMarkup;
+  reviewForm.hidden = true;
+  reviewStatus.hidden = false;
+  reviewStatus.focus();
+}
+
+async function submitReview(event) {
+  event.preventDefault();
+  if (!reviewForm.reportValidity()) return;
+
+  const submitButton = reviewForm.querySelector('button[type="submit"]');
+  const originalLabel = submitButton.innerHTML;
+  reviewStatus.hidden = true;
+  reviewStatus.classList.remove("is-error");
+  submitButton.disabled = true;
+  submitButton.textContent = "Sending…";
+
+  try {
+    const response = await fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(new FormData(reviewForm)).toString()
+    });
+    if (!response.ok) throw new Error("Form submission failed");
+
+    const url = new URL(window.location.href);
+    url.searchParams.set("submitted", "true");
+    url.hash = "roleReview";
+    history.replaceState(null, "", url);
+    showReviewConfirmation();
+  } catch (error) {
+    submitButton.disabled = false;
+    submitButton.innerHTML = originalLabel;
+    reviewStatus.hidden = false;
+    reviewStatus.classList.add("is-error");
+    reviewStatus.innerHTML = "<p class=\"eyebrow\">Could not send</p><h4>Your result is safe.</h4><p>Please try the form again. Nothing from your assessment has been lost.</p>";
+    reviewStatus.focus();
+  }
+}
+
 form.addEventListener("click", (event) => {
   const next = event.target.closest(".next-step");
   const previous = event.target.closest(".prev-step");
@@ -544,6 +590,7 @@ document.querySelector("#printBrief").addEventListener("click", () => window.pri
 document.querySelector("#copySummary").addEventListener("click", copySummary);
 document.querySelector("#resetTop").addEventListener("click", resetAssessment);
 document.querySelector("#resetBottom").addEventListener("click", resetAssessment);
+reviewForm.addEventListener("submit", submitReview);
 
 document.querySelector("#taskForm").addEventListener("submit", (event) => {
   event.preventDefault();
@@ -580,3 +627,7 @@ document.querySelector("#taskBoard").addEventListener("click", (event) => {
 document.querySelector("#year").textContent = new Date().getFullYear();
 renderTaskBoard();
 restoreState();
+
+if (new URLSearchParams(window.location.search).get("submitted") === "true") {
+  showReviewConfirmation();
+}
