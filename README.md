@@ -4,9 +4,11 @@ An interactive management tool for assessing whether an important role should be
 
 ## What the site includes
 
-- Five-dimension Role Readiness assessment
-- Tailored readiness position and decision guidance
-- Three priority actions based on the lowest-scoring areas
+- Seven plain-English questions completed in approximately three minutes
+- A clear Keep, Update or Rethink position without an artificial numeric score
+- Function-specific ideas for where technology could help
+- Human strengths to protect and capabilities that may matter more
+- Three tailored next actions
 - Interactive task-shift mapper
 - Printable Role Readiness Brief
 - Local browser storage so working answers stay on the user's device
@@ -34,7 +36,7 @@ The Role Review form requires Netlify Forms. GitHub Pages can display the site, 
 ## Content and brand updates
 
 - Main page: `dist/index.html`
-- Assessment questions and scoring: `dist/app.js`
+- Assessment questions and result logic: `dist/app.js`
 - Visual design: `dist/styles.css`
 - Netlify settings and security headers: `netlify.toml`
 
@@ -44,6 +46,6 @@ The header currently uses a clean text treatment because no official logo asset 
 
 Assessment answers and task-map entries are saved only in the user's browser using `localStorage`. They are not included in the Netlify form submission. Only information entered directly into the Role Review request form is submitted.
 
-## Scoring note
+## Decision note
 
-The score reflects role-definition clarity across five lenses. It is a structured management prompt, not a psychometric instrument, legal opinion, workforce-displacement prediction or assessment of the current role holder.
+The result is a structured management prompt, not a psychometric instrument, legal opinion, workforce-displacement prediction or assessment of the current role holder. It is designed to help a manager decide what to examine next.

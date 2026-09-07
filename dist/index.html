@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#f4c400" />
     <meta
       name="description"
-      content="A practical role readiness check for managers deciding whether to recruit, develop or redesign a role as AI changes the work."
+      content="A simple role check for managers deciding whether to keep, update or rethink a role as AI and automation change the work."
     />
     <title>Role Readiness Check | Next Generation</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
@@ -14,7 +14,7 @@
     <script src="./app.js" defer></script>
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to the assessment</a>
+    <a class="skip-link" href="#main">Skip to the role check</a>
 
     <header class="site-header">
       <a class="brand" href="#top" aria-label="Next Generation Role Readiness home">
@@ -36,39 +36,39 @@
           <p class="eyebrow">Role Readiness Check</p>
           <h1 id="pageTitle">Is this still the right role?</h1>
           <p class="lead">
-            Job titles often stay the same while the work inside them changes. Use this check before you recruit, replace or redesign an important role.
+            AI and automation are changing parts of many jobs. Answer seven simple questions to see whether one of your roles should stay as it is, be updated or be thought through again.
           </p>
 
-          <div class="promise-grid" aria-label="Assessment information">
+          <div class="promise-grid" aria-label="Role check information">
             <div>
-              <strong>7 minutes</strong>
+              <strong>3 minutes</strong>
               <span>to complete</span>
             </div>
             <div>
-              <strong>5 lenses</strong>
-              <span>on the role</span>
+              <strong>7 questions</strong>
+              <span>in plain English</span>
             </div>
             <div>
-              <strong>1 brief</strong>
+              <strong>1 clear brief</strong>
               <span>to take away</span>
             </div>
           </div>
 
           <blockquote>
-            “If this person left tomorrow, would you write the same role brief again?”
+            “If this person left tomorrow, would you recruit the same role again?”
           </blockquote>
 
           <div class="confidentiality-note">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3m-8 0h6m-8 0h10a2 2 0 0 1 2 2v7H5v-7a2 2 0 0 1 2-2Z" /></svg>
-            <p><strong>Your working notes stay on this device.</strong> Nothing is sent to Next Generation unless you submit the review form.</p>
+            <p><strong>Your answers stay on this device.</strong> Nothing is sent to Next Generation unless you request a Role Review.</p>
           </div>
         </aside>
 
         <div class="tool-panel">
-          <div class="progress-wrap" aria-label="Assessment progress">
+          <div class="progress-wrap" aria-label="Role check progress">
             <div class="progress-meta">
-              <span id="progressLabel">Role context</span>
-              <span id="progressCount">Step 1 of 7</span>
+              <span id="progressLabel">The role</span>
+              <span id="progressCount">Step 1 of 4</span>
             </div>
             <div class="progress-track"><span id="progressBar"></span></div>
           </div>
@@ -78,9 +78,9 @@
               <div class="step-heading">
                 <span class="step-number">01</span>
                 <div>
-                  <p class="kicker">Choose one real role</p>
-                  <h2 id="contextTitle">Set the context</h2>
-                  <p>Use a role you may recruit, replace, develop or materially change in the next 12–24 months.</p>
+                  <p class="kicker">Start with one real role</p>
+                  <h2 id="contextTitle">Which role are you reviewing?</h2>
+                  <p>Choose a role you already have or may need in the next 12–24 months.</p>
                 </div>
               </div>
 
@@ -88,7 +88,6 @@
                 <label class="field field-wide">
                   <span>Role title <em>required</em></span>
                   <input id="roleTitle" name="roleTitle" type="text" autocomplete="organization-title" placeholder="e.g. Quality Manager" required />
-                  <small>Use the title people currently recognise.</small>
                 </label>
 
                 <label class="field">
@@ -97,9 +96,9 @@
                 </label>
 
                 <label class="field">
-                  <span>Function</span>
-                  <select id="roleFunction" name="roleFunction">
-                    <option value="">Select a function</option>
+                  <span>Area of the business</span>
+                  <select id="roleFunction" name="roleFunction" required>
+                    <option value="">Choose an area</option>
                     <option>Operations</option>
                     <option>Quality</option>
                     <option>Engineering</option>
@@ -114,67 +113,140 @@
                 </label>
 
                 <fieldset class="field field-wide choice-field">
-                  <legend>What decision is closest?</legend>
-                  <div class="choice-grid">
-                    <label><input type="radio" name="decisionContext" value="Replace" /><span>Replace someone</span></label>
-                    <label><input type="radio" name="decisionContext" value="Add" /><span>Add a new role</span></label>
-                    <label><input type="radio" name="decisionContext" value="Develop" /><span>Develop the team</span></label>
-                    <label><input type="radio" name="decisionContext" value="Redesign" /><span>Redesign the work</span></label>
-                    <label><input type="radio" name="decisionContext" value="Explore" checked /><span>Explore what is changing</span></label>
+                  <legend><span class="question-count">Question 1</span> Why are you looking at this role?</legend>
+                  <div class="choice-grid choice-grid-wide">
+                    <label><input type="radio" name="decisionContext" value="Someone has left or may leave" /><span>Someone has left or may leave</span></label>
+                    <label><input type="radio" name="decisionContext" value="We need more capacity" /><span>We need more capacity</span></label>
+                    <label><input type="radio" name="decisionContext" value="The work is changing" /><span>The work is changing</span></label>
+                    <label><input type="radio" name="decisionContext" value="We want to develop the team" /><span>We want to develop the team</span></label>
+                    <label><input type="radio" name="decisionContext" value="We are simply exploring" /><span>We are simply exploring</span></label>
                   </div>
                 </fieldset>
               </div>
+              <p class="step-error" role="alert" hidden>Please add the role, choose the area of the business and tell us why you are reviewing it.</p>
 
               <div class="step-actions">
                 <span></span>
-                <button class="button button-primary next-step" type="button">Begin the check <span aria-hidden="true">→</span></button>
+                <button class="button button-primary next-step" type="button">Continue <span aria-hidden="true">→</span></button>
               </div>
             </section>
 
-            <div id="questionSteps"></div>
-
-            <section class="step" data-step="6" aria-labelledby="reflectionTitle">
+            <section class="step" data-step="1" aria-labelledby="changeTitle">
               <div class="step-heading">
-                <span class="step-number">07</span>
+                <span class="step-number">02</span>
                 <div>
-                  <p class="kicker">Final reflection</p>
-                  <h2 id="reflectionTitle">What is your instinct now?</h2>
-                  <p>There is no “correct” answer. Choose the route that feels most responsible based on what you know today.</p>
+                  <p class="kicker">What is happening around the role?</p>
+                  <h2 id="changeTitle">What has changed?</h2>
+                  <p>Choose everything that has had a real effect on the role.</p>
                 </div>
               </div>
 
-              <fieldset class="decision-cards">
-                <legend class="sr-only">Choose a likely role decision</legend>
-                <label>
-                  <input type="radio" name="likelyDecision" value="Recruit broadly as it stands" required />
-                  <span class="decision-card"><strong>Recruit</strong><small>The role is clear enough to test in the market.</small></span>
-                </label>
-                <label>
-                  <input type="radio" name="likelyDecision" value="Update the brief before recruiting" />
-                  <span class="decision-card"><strong>Refine</strong><small>The role remains, but its outcomes or criteria need updating.</small></span>
-                </label>
-                <label>
-                  <input type="radio" name="likelyDecision" value="Develop capability internally" />
-                  <span class="decision-card"><strong>Develop</strong><small>The future capability may already exist in the team.</small></span>
-                </label>
-                <label>
-                  <input type="radio" name="likelyDecision" value="Redesign the work first" />
-                  <span class="decision-card"><strong>Redesign</strong><small>The work needs to be reconsidered before choosing a person.</small></span>
-                </label>
-                <label>
-                  <input type="radio" name="likelyDecision" value="Use a blended approach" checked />
-                  <span class="decision-card"><strong>Blend</strong><small>Combine hiring, development, technology and work redesign.</small></span>
-                </label>
+              <fieldset class="simple-question">
+                <legend><span class="question-count">Question 2</span> What is changing around this role?</legend>
+                <div class="select-card-grid">
+                  <label><input type="checkbox" name="changes" value="New technology or AI" /><span>New technology or AI</span></label>
+                  <label><input type="checkbox" name="changes" value="More work or greater scale" /><span>More work or greater scale</span></label>
+                  <label><input type="checkbox" name="changes" value="New rules or greater risk" /><span>New rules or greater risk</span></label>
+                  <label><input type="checkbox" name="changes" value="Different customer needs" /><span>Different customer needs</span></label>
+                  <label><input type="checkbox" name="changes" value="New business priorities" /><span>New business priorities</span></label>
+                  <label><input type="checkbox" name="changes" value="Skills are harder to find" /><span>Skills are harder to find</span></label>
+                  <label><input type="checkbox" name="changes" value="Nothing significant" /><span>Nothing significant</span></label>
+                </div>
               </fieldset>
 
-              <label class="field reflection-field">
-                <span>What feels least clear?</span>
-                <textarea id="openQuestion" name="openQuestion" rows="4" placeholder="Capture the question you need to resolve next."></textarea>
-              </label>
+              <fieldset class="simple-question">
+                <legend><span class="question-count">Question 3</span> Where does most of the person’s time go?</legend>
+                <p class="question-help">Choose up to three.</p>
+                <div class="select-card-grid">
+                  <label><input type="checkbox" name="timeAreas" value="Reporting" /><span>Reporting</span></label>
+                  <label><input type="checkbox" name="timeAreas" value="Administration" /><span>Administration</span></label>
+                  <label><input type="checkbox" name="timeAreas" value="Analysis" /><span>Analysis</span></label>
+                  <label><input type="checkbox" name="timeAreas" value="Planning and scheduling" /><span>Planning and scheduling</span></label>
+                  <label><input type="checkbox" name="timeAreas" value="Compliance and documentation" /><span>Compliance and documentation</span></label>
+                  <label><input type="checkbox" name="timeAreas" value="Coordinating work" /><span>Coordinating work</span></label>
+                  <label><input type="checkbox" name="timeAreas" value="Problem-solving" /><span>Problem-solving</span></label>
+                  <label><input type="checkbox" name="timeAreas" value="Managing people" /><span>Managing people</span></label>
+                  <label><input type="checkbox" name="timeAreas" value="Customers or suppliers" /><span>Customers or suppliers</span></label>
+                </div>
+                <p class="limit-message" id="timeLimitMessage" hidden>Choose no more than three.</p>
+              </fieldset>
 
+              <p class="step-error" role="alert" hidden>Please choose at least one answer for each question.</p>
               <div class="step-actions">
                 <button class="button button-secondary prev-step" type="button"><span aria-hidden="true">←</span> Back</button>
-                <button class="button button-primary" id="showResults" type="button">Build my role brief <span aria-hidden="true">→</span></button>
+                <button class="button button-primary next-step" type="button">Continue <span aria-hidden="true">→</span></button>
+              </div>
+            </section>
+
+            <section class="step" data-step="2" aria-labelledby="workTitle">
+              <div class="step-heading">
+                <span class="step-number">03</span>
+                <div>
+                  <p class="kicker">Look at the work itself</p>
+                  <h2 id="workTitle">How does the work get done?</h2>
+                  <p>These two questions help separate work technology can support from work that depends on people.</p>
+                </div>
+              </div>
+
+              <fieldset class="simple-question">
+                <legend><span class="question-count">Question 4</span> How much of the work is repeated or follows clear rules?</legend>
+                <div class="plain-answer-grid">
+                  <label><input type="radio" name="repeatLevel" value="Very little" /><span><strong>Very little</strong><small>Most situations are different</small></span></label>
+                  <label><input type="radio" name="repeatLevel" value="Some" /><span><strong>Some</strong><small>There is a mixture</small></span></label>
+                  <label><input type="radio" name="repeatLevel" value="A lot" /><span><strong>A lot</strong><small>Much of it is predictable</small></span></label>
+                </div>
+              </fieldset>
+
+              <fieldset class="simple-question">
+                <legend><span class="question-count">Question 5</span> How much depends on judgment, trust or personal responsibility?</legend>
+                <div class="plain-answer-grid">
+                  <label><input type="radio" name="judgmentLevel" value="Very little" /><span><strong>Very little</strong><small>Rules usually decide the answer</small></span></label>
+                  <label><input type="radio" name="judgmentLevel" value="Some" /><span><strong>Some</strong><small>People handle the exceptions</small></span></label>
+                  <label><input type="radio" name="judgmentLevel" value="A lot" /><span><strong>A lot</strong><small>Experience and trust are central</small></span></label>
+                </div>
+              </fieldset>
+
+              <p class="step-error" role="alert" hidden>Please answer both questions before continuing.</p>
+              <div class="step-actions">
+                <button class="button button-secondary prev-step" type="button"><span aria-hidden="true">←</span> Back</button>
+                <button class="button button-primary next-step" type="button">Continue <span aria-hidden="true">→</span></button>
+              </div>
+            </section>
+
+            <section class="step" data-step="3" aria-labelledby="decisionTitle">
+              <div class="step-heading">
+                <span class="step-number">04</span>
+                <div>
+                  <p class="kicker">Your instinct matters</p>
+                  <h2 id="decisionTitle">What are you leaning towards?</h2>
+                  <p>Do not overthink it. Choose the answer that feels closest today.</p>
+                </div>
+              </div>
+
+              <fieldset class="simple-question">
+                <legend><span class="question-count">Question 6</span> Would you look for the same type of person you hired last time?</legend>
+                <div class="plain-answer-grid">
+                  <label><input type="radio" name="sameProfile" value="Yes" /><span><strong>Yes</strong><small>The core need is much the same</small></span></label>
+                  <label><input type="radio" name="sameProfile" value="Not sure" /><span><strong>Not sure</strong><small>Some parts have changed</small></span></label>
+                  <label><input type="radio" name="sameProfile" value="No" /><span><strong>No</strong><small>We need something different now</small></span></label>
+                </div>
+              </fieldset>
+
+              <fieldset class="simple-question">
+                <legend><span class="question-count">Question 7</span> What do you currently think the business needs?</legend>
+                <div class="decision-cards compact-decisions">
+                  <label><input type="radio" name="likelyDecision" value="Recruit the role as it is" /><span class="decision-card"><strong>Recruit</strong><small>The role is broadly still right.</small></span></label>
+                  <label><input type="radio" name="likelyDecision" value="Update the role first" /><span class="decision-card"><strong>Update</strong><small>Keep the role but change parts of it.</small></span></label>
+                  <label><input type="radio" name="likelyDecision" value="Develop someone internally" /><span class="decision-card"><strong>Develop</strong><small>Build the capability in the current team.</small></span></label>
+                  <label><input type="radio" name="likelyDecision" value="Redesign the role" /><span class="decision-card"><strong>Redesign</strong><small>Rethink the work before choosing a person.</small></span></label>
+                  <label><input type="radio" name="likelyDecision" value="We are not sure yet" /><span class="decision-card"><strong>Not sure</strong><small>Use the result to guide the next discussion.</small></span></label>
+                </div>
+              </fieldset>
+
+              <p class="step-error" role="alert" hidden>Please answer both questions to build your brief.</p>
+              <div class="step-actions">
+                <button class="button button-secondary prev-step" type="button"><span aria-hidden="true">←</span> Back</button>
+                <button class="button button-primary" id="showResults" type="button">Show my role brief <span aria-hidden="true">→</span></button>
               </div>
             </section>
           </form>
@@ -186,7 +258,7 @@
           <div>
             <p class="eyebrow">Your Role Readiness Brief</p>
             <h2 id="resultRole">Role title</h2>
-            <p id="resultContext">A practical decision aid—not a grade or psychometric assessment.</p>
+            <p id="resultContext"></p>
           </div>
           <div class="result-actions no-print">
             <button class="button button-secondary" id="copySummary" type="button">Copy summary</button>
@@ -196,92 +268,101 @@
 
         <div class="result-overview">
           <article class="score-card">
-            <div class="score-ring" id="scoreRing" role="img" aria-label="Readiness score">
-              <span><strong id="totalScore">0</strong><small>/ 30</small></span>
+            <div class="score-ring signal-ring" id="signalRing" role="img" aria-label="Likely role position">
+              <span><strong id="signalWord">UPDATE</strong></span>
             </div>
             <div>
-              <p class="result-label">Current position</p>
-              <h3 id="readinessTitle">Review before action</h3>
+              <p class="result-label">Likely position</p>
+              <h3 id="readinessTitle">Update the role before you decide</h3>
               <p id="readinessText"></p>
             </div>
           </article>
 
           <article class="decision-summary">
-            <p class="result-label">Your current direction</p>
-            <h3 id="decisionResult">Use a blended approach</h3>
-            <p id="decisionGuidance"></p>
+            <p class="result-label">What you are leaning towards</p>
+            <h3 id="decisionResult">Update the role first</h3>
+            <div class="signal-list" id="decisionSignals"></div>
           </article>
         </div>
 
-        <div class="dimension-section">
+        <section class="dimension-section">
           <div class="section-intro">
-            <p class="eyebrow">The five lenses</p>
-            <h3>Where the role is clear—and where it needs work</h3>
+            <p class="eyebrow">What this could mean for the role</p>
+            <h3>Useful places to focus</h3>
           </div>
-          <div class="dimension-grid" id="dimensionResults"></div>
-        </div>
+          <div class="role-insight-grid" id="roleInsights"></div>
+          <p class="method-note result-caveat">These are informed starting points based on the area of the business and the work you selected. Check them with the people who understand the role best.</p>
+        </section>
 
-        <div class="priority-section">
+        <section class="priority-section">
           <div class="section-intro">
-            <p class="eyebrow">Your next best work</p>
-            <h3>Three actions before you make a people decision</h3>
+            <p class="eyebrow">What to do next</p>
+            <h3>Three practical actions</h3>
           </div>
           <div class="priority-grid" id="priorityActions"></div>
-        </div>
-
-        <section class="task-mapper" aria-labelledby="taskMapperTitle">
-          <div class="task-mapper-copy">
-            <p class="eyebrow">Go one level deeper</p>
-            <h3 id="taskMapperTitle">Map the work, not just the title</h3>
-            <p>Add the role’s most important tasks and decide what should happen to each one. Your task map will be included in the printable brief.</p>
-
-            <form id="taskForm" class="task-form">
-              <label class="field">
-                <span>Task or responsibility</span>
-                <input id="taskName" type="text" placeholder="e.g. Review batch deviations" required />
-              </label>
-              <label class="field">
-                <span>Future treatment</span>
-                <select id="taskCategory">
-                  <option value="human">Human-led</option>
-                  <option value="augment">AI-supported</option>
-                  <option value="automate">Automate</option>
-                  <option value="remove">Reduce or remove</option>
-                </select>
-              </label>
-              <label class="field">
-                <span>Business importance</span>
-                <select id="taskImpact">
-                  <option value="High">High</option>
-                  <option value="Medium" selected>Medium</option>
-                  <option value="Low">Low</option>
-                </select>
-              </label>
-              <button class="button button-primary" type="submit">Add task</button>
-            </form>
-          </div>
-
-          <div class="task-board" id="taskBoard"></div>
         </section>
+
+        <details class="task-mapper optional-mapper">
+          <summary class="task-mapper-summary">
+            <span><small>Optional next step</small><strong>Map the work inside the role</strong></span>
+            <span class="summary-action">Open task mapper</span>
+          </summary>
+          <div class="task-mapper-body">
+            <div class="task-mapper-copy">
+              <p class="eyebrow">Go one level deeper</p>
+              <h3>Look at the work, not just the title</h3>
+              <p>Add the role’s most important tasks and decide what should happen to each one. This will be included if you save the brief as a PDF.</p>
+              <div class="task-suggestions-wrap">
+                <span>Useful places to start:</span>
+                <div class="task-suggestions" id="taskSuggestions"></div>
+              </div>
+
+              <form id="taskForm" class="task-form">
+                <label class="field">
+                  <span>Task or responsibility</span>
+                  <input id="taskName" type="text" placeholder="e.g. Review batch deviations" required />
+                </label>
+                <label class="field">
+                  <span>What should happen?</span>
+                  <select id="taskCategory">
+                    <option value="human">Keep human-led</option>
+                    <option value="augment">Support with AI</option>
+                    <option value="automate">Automate</option>
+                    <option value="remove">Reduce or stop</option>
+                  </select>
+                </label>
+                <label class="field">
+                  <span>How important is it?</span>
+                  <select id="taskImpact">
+                    <option value="High">High</option>
+                    <option value="Medium" selected>Medium</option>
+                    <option value="Low">Low</option>
+                  </select>
+                </label>
+                <button class="button button-primary" type="submit">Add task</button>
+              </form>
+            </div>
+            <div class="task-board" id="taskBoard"></div>
+          </div>
+        </details>
 
         <section class="working-summary">
           <div class="section-intro">
-            <p class="eyebrow">Working conclusion</p>
-            <h3 id="summaryHeading">The question to resolve next</h3>
+            <p class="eyebrow">The question to take away</p>
+            <h3>Use this with your team</h3>
           </div>
           <blockquote id="workingQuestion"></blockquote>
-          <p class="method-note">This check measures how clearly the future role has been defined. It does not measure the value of the current role holder or predict individual performance.</p>
         </section>
 
         <section class="review-cta no-print" id="roleReview">
           <div class="cta-copy">
             <p class="eyebrow">Complimentary Role Review</p>
-            <h3>Turn this thinking into a one-page Role Change Brief</h3>
-            <p>Choose one role. In a focused 15-minute conversation, we will test the future purpose, changing tasks, human judgment and capability requirements—then return a concise brief you can use with your team.</p>
+            <h3>Want a second view on this role?</h3>
+            <p>We will spend 15 minutes looking at one role with you and send back a clear one-page summary of what may need to stay, change or be developed.</p>
             <ul>
-              <li>No active vacancy required</li>
-              <li>No recruitment commitment</li>
-              <li>A practical output, not a sales presentation</li>
+              <li>You do not need an open vacancy</li>
+              <li>There is no recruitment commitment</li>
+              <li>You leave with a useful written summary</li>
             </ul>
           </div>
 
@@ -294,8 +375,8 @@
             netlify-honeypot="bot-field"
           >
             <input type="hidden" name="form-name" value="role-review" />
-            <input type="hidden" name="assessment-score" id="formScore" value="" />
-            <input type="hidden" name="assessment-direction" id="formDirection" value="" />
+            <input type="hidden" name="role-position" id="formPosition" value="" />
+            <input type="hidden" name="current-direction" id="formDirection" value="" />
             <p class="honeypot"><label>Do not fill this out: <input name="bot-field" /></label></p>
 
             <label class="field">
@@ -315,7 +396,7 @@
               <input name="role" id="formRole" type="text" required />
             </label>
             <label class="field field-wide">
-              <span>The question you most want to resolve</span>
+              <span>The main question to discuss</span>
               <textarea name="priority" id="formPriority" rows="3"></textarea>
             </label>
             <label class="consent-field field-wide">
@@ -323,44 +404,44 @@
               <span>I am happy for Next Generation to contact me about this Role Review. <a href="./privacy.html">How this tool handles my information</a>.</span>
             </label>
             <button class="button button-primary field-wide" type="submit">Request my Role Review <span aria-hidden="true">→</span></button>
-            <small class="field-wide form-privacy">Only the details entered in this form are submitted. Your assessment answers and task map remain on your device.</small>
+            <small class="field-wide form-privacy">Only the details in this form are sent. Your other answers stay on your device.</small>
           </form>
         </section>
 
         <section class="research-section">
           <div class="section-intro">
-            <p class="eyebrow">Research foundation</p>
-            <h3>Why the check starts with work</h3>
+            <p class="eyebrow">Why this check exists</p>
+            <h3>AI changes parts of jobs—not every job in the same way</h3>
           </div>
           <div class="research-grid">
             <article>
               <span>01</span>
-              <h4>AI changes tasks unevenly</h4>
-              <p>Exposure to AI is not the same as job loss. The more useful management question is which tasks will be transformed, supported or retained.</p>
+              <h4>Start with the actual work</h4>
+              <p>Look at the tasks people perform before deciding whether a role will disappear, remain or change.</p>
             </article>
             <article>
               <span>02</span>
-              <h4>Human accountability still matters</h4>
-              <p>Where decisions affect people, safety, quality or material business outcomes, human authority must be clear and meaningful.</p>
+              <h4>Keep people responsible</h4>
+              <p>Important decisions still need clear human judgment, challenge and accountability.</p>
             </article>
             <article>
               <span>03</span>
-              <h4>Skills-based hiring starts before advertising</h4>
-              <p>Removing a degree requirement is not enough. The role, evidence and assessment method must reflect the work that actually needs to be done.</p>
+              <h4>Do not recruit yesterday’s role</h4>
+              <p>Update the work and skills first, then decide whether to recruit, develop someone or redesign the role.</p>
             </article>
           </div>
           <details>
-            <summary>Evidence and limitations</summary>
+            <summary>Research behind the check</summary>
             <div class="evidence-copy">
-              <p>This tool is distilled from Next Generation’s 2026 research into the future design of talent attraction and work. The underlying synthesis reviewed 75 sources, including task-level research from the International Labour Organization and risk-management guidance from NIST.</p>
-              <p>The assessment is a structured management prompt, not a validated psychometric instrument, legal opinion or prediction of workforce displacement. Its purpose is to improve the questions asked before a role decision is made.</p>
+              <p>This tool is distilled from Next Generation’s 2026 research into how AI may change work and talent decisions. The underlying report reviewed 75 sources.</p>
+              <p>This is a practical management tool, not a scientific test, legal opinion or prediction that a job will disappear. Its purpose is to help managers ask better questions before making a decision.</p>
               <p><a href="https://www.ilo.org/publications/generative-ai-and-jobs-refined-global-index-occupational-exposure" rel="noreferrer">ILO: Generative AI and Jobs</a> · <a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf" rel="noreferrer">NIST AI Risk Management Framework</a></p>
             </div>
           </details>
         </section>
 
         <div class="end-actions no-print">
-          <button class="text-button" id="resetBottom" type="button">Start a new role check</button>
+          <button class="text-button" id="resetBottom" type="button">Check another role</button>
           <a class="button button-dark" href="#roleReview">Request a Role Review</a>
         </div>
       </section>
@@ -371,7 +452,7 @@
         <span class="brand-mark" aria-hidden="true">NG</span>
         <span class="brand-copy"><strong>NEXT GENERATION</strong><span>Talent · Intelligence · Strategy · AI</span></span>
       </div>
-      <p>Role Readiness Check · Designed for better decisions before recruitment.</p>
+      <p>Role Readiness Check · Better questions before a people decision.</p>
       <p><a href="./privacy.html">Privacy</a> · <a href="mailto:enquiries@nextgeneration.ie">Contact</a> · © <span id="year"></span> Next Generation</p>
     </footer>
   </body>

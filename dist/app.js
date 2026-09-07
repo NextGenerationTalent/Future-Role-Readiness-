@@ -1,87 +1,171 @@
-const STORAGE_KEY = "ng-role-readiness-v1";
+const STORAGE_KEY = "ng-role-readiness-v2";
 
-const dimensions = [
-  {
-    id: "purpose",
-    title: "Future purpose",
-    kicker: "Start with the outcome",
-    description: "Test whether the role is defined by the result the business will need—not a list inherited from the past.",
-    why: "A clear future purpose prevents an old job description from becoming the strategy by default.",
-    questions: [
-      "We can state the single most important business outcome this role must own over the next 12–24 months.",
-      "The role’s measures of success reflect where the business is going, not only how the work is done today.",
-      "We can distinguish what this role must own from what it merely supports."
+const functionProfiles = {
+  Operations: {
+    opportunities: [
+      "Turn recurring operational data into clearer daily and weekly reports.",
+      "Compare schedules, capacity and resource options faster.",
+      "Spot exceptions earlier so managers can focus on the decisions that matter."
     ],
-    actionTitle: "Rewrite the role in one sentence",
-    action: "Complete this sentence without referring to the old job description: ‘Over the next 12–24 months, this role exists to…’ Then name no more than three outcomes that would prove it."
+    human: [
+      "Make trade-offs when service, cost, safety and people pull in different directions.",
+      "Lead teams through disruption, pressure and change.",
+      "Take responsibility for exceptions that do not fit the standard process."
+    ],
+    capabilities: ["Using data to make decisions", "Managing exceptions", "Leading change"]
   },
-  {
-    id: "work",
-    title: "Changing work",
-    kicker: "Look inside the title",
-    description: "Identify which tasks will grow, reduce or change as AI, automation and business requirements evolve.",
-    why: "AI exposure is not the same as job displacement. The practical unit of change is the task—not the title.",
-    questions: [
-      "We know which recurring tasks are likely to be automated, accelerated or materially changed.",
-      "We know which activities will become more important as lower-value work reduces.",
-      "We have tested whether the underlying need is a people gap, a process problem, a technology opportunity—or a combination."
+  Quality: {
+    opportunities: [
+      "Prepare first drafts of routine quality documents and summaries.",
+      "Find patterns across deviations, complaints or quality data.",
+      "Bring the relevant evidence together before a review or investigation."
     ],
-    actionTitle: "Build a task-shift map",
-    action: "List the role’s ten most important tasks. Mark each Human-led, AI-supported, Automate, or Reduce. Pay particular attention to high-impact tasks whose treatment is still unclear."
+    human: [
+      "Make final quality and compliance decisions.",
+      "Challenge weak evidence and investigate unusual cases.",
+      "Accept accountability where patient, product or regulatory risk is involved."
+    ],
+    capabilities: ["Evidence-based judgment", "Data interpretation", "AI and data controls"]
   },
-  {
-    id: "judgment",
-    title: "Human judgment",
-    kicker: "Protect meaningful accountability",
-    description: "Define where experience, relationships, challenge and final accountability must remain human.",
-    why: "Human review has little value if the reviewer lacks the information, authority or time to change the decision.",
-    questions: [
-      "We have identified the decisions that must remain human-led because of risk, safety, quality, people or commercial consequence.",
-      "A named person would retain clear accountability for decisions supported by AI or automation.",
-      "The role has a practical route to question, override or escalate an automated recommendation."
+  Engineering: {
+    opportunities: [
+      "Search technical information and prepare routine documentation faster.",
+      "Support fault finding by comparing current and historical data.",
+      "Identify maintenance or performance patterns that deserve attention."
     ],
-    actionTitle: "Draw the human boundary",
-    action: "For each consequential decision, name who recommends, who decides, who can challenge, and what evidence they need. Avoid describing human involvement as a final approval click."
+    human: [
+      "Approve safety-critical changes and engineering decisions.",
+      "Apply practical experience when the evidence is incomplete.",
+      "Balance reliability, cost, quality and operational impact."
+    ],
+    capabilities: ["Systems thinking", "Data-led problem-solving", "Technical change control"]
   },
-  {
-    id: "capability",
-    title: "Future capability",
-    kicker: "Separate essential from trainable",
-    description: "Define the capabilities required for future work and the evidence that would demonstrate them.",
-    why: "A role is not skills-based merely because a degree line was removed. The work, evidence and assessment must also change.",
-    questions: [
-      "We can separate the capabilities required on day one from those that can be learned with the right support.",
-      "The current selection criteria test the work this person will need to perform in the future—not only previous titles or tenure.",
-      "We know what evidence, work sample or structured question would demonstrate the critical capabilities."
+  "Supply Chain": {
+    opportunities: [
+      "Build and compare demand, supply and inventory scenarios faster.",
+      "Highlight shortages, delays and planning exceptions earlier.",
+      "Reduce time spent compiling routine planning and supplier reports."
     ],
-    actionTitle: "Split the capability list",
-    action: "Create two columns: Essential on day one and Trainable after appointment. For every essential requirement, write down the evidence that would prove it. Remove criteria that cannot be connected to the work."
+    human: [
+      "Choose between imperfect options when supply is constrained.",
+      "Manage supplier relationships and difficult conversations.",
+      "Take responsibility for risk, service and inventory trade-offs."
+    ],
+    capabilities: ["Scenario planning", "Commercial judgment", "Exception management"]
   },
-  {
-    id: "decision",
-    title: "Decision readiness",
-    kicker: "Choose the right intervention",
-    description: "Decide whether the need is best solved through recruitment, development, work redesign or a blend.",
-    why: "Recruitment is one possible response to changing work. It should follow role clarity rather than substitute for it.",
-    questions: [
-      "We have deliberately considered recruitment, internal development, work redesign and technology—not only replacement hiring.",
-      "The current role brief has been reviewed since the work or operating context materially changed.",
-      "We know what tools, learning and management support the person will need to succeed after the decision is made."
+  Procurement: {
+    opportunities: [
+      "Analyse spend, supplier and contract information more quickly.",
+      "Prepare supplier research and first-pass comparisons.",
+      "Flag contract terms, risks or renewal points for human review."
     ],
-    actionTitle: "Make the intervention explicit",
-    action: "Write down why Recruit, Develop, Redesign or Blend is the most responsible route. Include what evidence would cause you to change that decision before committing budget."
+    human: [
+      "Negotiate and build trusted supplier relationships.",
+      "Make commercial and ethical trade-offs.",
+      "Challenge recommendations that overlook operational context."
+    ],
+    capabilities: ["Negotiation", "Risk judgment", "Interpreting AI-supported analysis"]
+  },
+  Finance: {
+    opportunities: [
+      "Prepare recurring reports, commentary and first-pass variance analysis.",
+      "Compare forecast assumptions and possible outcomes faster.",
+      "Identify unusual transactions or movements for review."
+    ],
+    human: [
+      "Interpret what the numbers mean for the business.",
+      "Own controls, challenge assumptions and explain uncertainty.",
+      "Make commercial decisions where the answer is not contained in the data."
+    ],
+    capabilities: ["Commercial interpretation", "Data assurance", "Influencing decisions"]
+  },
+  Commercial: {
+    opportunities: [
+      "Prepare account research, meeting briefs and first drafts faster.",
+      "Reduce time spent updating systems and summarising activity.",
+      "Find patterns across customers, opportunities and market information."
+    ],
+    human: [
+      "Build trust and understand what a customer is not saying.",
+      "Negotiate, persuade and position an offer.",
+      "Make judgment calls about relationships, timing and value."
+    ],
+    capabilities: ["Consultative questioning", "Commercial judgment", "Using insight well"]
+  },
+  "People / HR": {
+    opportunities: [
+      "Prepare first drafts, summaries and routine employee information.",
+      "Bring workforce data together to support planning.",
+      "Reduce administrative work around recurring people processes."
+    ],
+    human: [
+      "Handle sensitive decisions and difficult conversations.",
+      "Challenge incomplete evidence in decisions affecting people.",
+      "Maintain trust, fairness and clear accountability."
+    ],
+    capabilities: ["Human judgment", "Workforce insight", "Responsible use of AI"]
+  },
+  "Technology / Data": {
+    opportunities: [
+      "Accelerate routine coding, testing, documentation and analysis.",
+      "Identify patterns in system performance and support incidents.",
+      "Help teams find and use technical knowledge more quickly."
+    ],
+    human: [
+      "Own architecture, security and material technical decisions.",
+      "Challenge outputs when the data or assumptions are weak.",
+      "Translate business needs into responsible technical choices."
+    ],
+    capabilities: ["Architecture and systems judgment", "AI assurance", "Business translation"]
+  },
+  Other: {
+    opportunities: [
+      "Reduce time spent preparing routine reports, summaries and documents.",
+      "Find useful patterns across information that is difficult to review manually.",
+      "Bring options and relevant evidence together before a person makes a decision."
+    ],
+    human: [
+      "Make decisions where context, consequence or uncertainty matters.",
+      "Build trust with colleagues, customers and partners.",
+      "Question the evidence and take responsibility for the outcome."
+    ],
+    capabilities: ["Sound judgment", "Using data and AI critically", "Leading change"]
   }
-];
+};
+
+const timeAreaInsights = {
+  Reporting: "Prepare recurring reports and first drafts faster, leaving more time to interpret what the information means.",
+  Administration: "Reduce repetitive data entry, document preparation and routine follow-up.",
+  Analysis: "Compare information, find patterns and highlight exceptions for human review.",
+  "Planning and scheduling": "Build and compare plans, schedules and scenarios more quickly.",
+  "Compliance and documentation": "Organise evidence and prepare routine documentation while keeping final approval human-led.",
+  "Coordinating work": "Summarise progress, actions and dependencies so people can focus on resolving delays.",
+  "Problem-solving": "Bring possible causes, evidence and options together before an experienced person decides.",
+  "Managing people": "Prepare information and reduce administration, while keeping coaching and people decisions human.",
+  "Customers or suppliers": "Support research and preparation, while protecting the relationship, negotiation and final judgment."
+};
+
+const taskSuggestionsByFunction = {
+  Operations: ["Daily performance reporting", "Production scheduling", "Exception management"],
+  Quality: ["Quality document preparation", "Trend review", "Deviation investigation"],
+  Engineering: ["Technical documentation", "Fault finding", "Maintenance planning"],
+  "Supply Chain": ["Demand planning", "Inventory review", "Supplier exception management"],
+  Procurement: ["Spend analysis", "Supplier research", "Contract review"],
+  Finance: ["Monthly reporting", "Variance analysis", "Forecast preparation"],
+  Commercial: ["Account research", "CRM administration", "Proposal preparation"],
+  "People / HR": ["People reporting", "Policy drafting", "Employee administration"],
+  "Technology / Data": ["Routine coding", "System monitoring", "Technical documentation"],
+  Other: ["Recurring reporting", "Document preparation", "Information analysis"]
+};
 
 const categoryMeta = {
-  human: { title: "Human-led", description: "Judgment, accountability or relationship is central." },
-  augment: { title: "AI-supported", description: "Technology assists; a person retains meaningful control." },
-  automate: { title: "Automate", description: "Repeatable work with clear controls and exceptions." },
-  remove: { title: "Reduce or remove", description: "Work that may no longer justify the same effort." }
+  human: { title: "Keep human-led", description: "Judgment, trust or accountability is central." },
+  augment: { title: "Support with AI", description: "Technology helps; a person remains in control." },
+  automate: { title: "Automate", description: "Repeatable work with clear rules and controls." },
+  remove: { title: "Reduce or stop", description: "Work that may no longer justify the same effort." }
 };
 
 const form = document.querySelector("#assessmentForm");
-const questionSteps = document.querySelector("#questionSteps");
 const resultsSection = document.querySelector("#results");
 const progressLabel = document.querySelector("#progressLabel");
 const progressCount = document.querySelector("#progressCount");
@@ -90,58 +174,17 @@ const progressBar = document.querySelector("#progressBar");
 let currentStep = 0;
 let tasks = [];
 
-function renderQuestionSteps() {
-  questionSteps.innerHTML = dimensions.map((dimension, dimensionIndex) => {
-    const questionMarkup = dimension.questions.map((question, questionIndex) => {
-      const name = `${dimension.id}-${questionIndex}`;
-      return `
-        <fieldset class="question-card" data-question="${name}">
-          <legend><span>${questionIndex + 1}</span>${question}</legend>
-          <div class="answer-scale">
-            <label><input type="radio" name="${name}" value="0" /><span><strong>Not yet</strong><small>We have not defined this</small></span></label>
-            <label><input type="radio" name="${name}" value="1" /><span><strong>Partly</strong><small>Some thinking exists</small></span></label>
-            <label><input type="radio" name="${name}" value="2" /><span><strong>Clear</strong><small>We could explain it now</small></span></label>
-          </div>
-        </fieldset>`;
-    }).join("");
-
-    return `
-      <section class="step" data-step="${dimensionIndex + 1}" aria-labelledby="${dimension.id}Title">
-        <div class="step-heading">
-          <span class="step-number">0${dimensionIndex + 2}</span>
-          <div>
-            <p class="kicker">${dimension.kicker}</p>
-            <h2 id="${dimension.id}Title">${dimension.title}</h2>
-            <p>${dimension.description}</p>
-          </div>
-        </div>
-        <div class="insight-strip"><strong>Why this matters</strong><span>${dimension.why}</span></div>
-        <div class="question-list">${questionMarkup}</div>
-        <label class="field notes-field">
-          <span>Working note <small>optional</small></span>
-          <textarea name="${dimension.id}-note" rows="3" placeholder="Capture an example, concern or assumption to test."></textarea>
-        </label>
-        <p class="step-error" role="alert" hidden>Please answer all three statements before continuing.</p>
-        <div class="step-actions">
-          <button class="button button-secondary prev-step" type="button"><span aria-hidden="true">←</span> Back</button>
-          <button class="button button-primary next-step" type="button">Continue <span aria-hidden="true">→</span></button>
-        </div>
-      </section>`;
-  }).join("");
-}
-
 function allSteps() {
   return [...document.querySelectorAll(".step")];
 }
 
 function showStep(index, shouldFocus = true) {
-  currentStep = Math.max(0, Math.min(index, 6));
+  currentStep = Math.max(0, Math.min(index, 3));
   allSteps().forEach((step) => step.classList.toggle("is-active", Number(step.dataset.step) === currentStep));
-
-  const labels = ["Role context", ...dimensions.map((item) => item.title), "Your direction"];
+  const labels = ["The role", "What has changed", "How the work gets done", "Your decision"];
   progressLabel.textContent = labels[currentStep];
-  progressCount.textContent = `Step ${currentStep + 1} of 7`;
-  progressBar.style.width = `${((currentStep + 1) / 7) * 100}%`;
+  progressCount.textContent = `Step ${currentStep + 1} of 4`;
+  progressBar.style.width = `${((currentStep + 1) / 4) * 100}%`;
   saveState();
 
   if (shouldFocus) {
@@ -150,46 +193,66 @@ function showStep(index, shouldFocus = true) {
   }
 }
 
+function selectedValues(name) {
+  return [...form.querySelectorAll(`input[name="${name}"]:checked`)].map((input) => input.value);
+}
+
+function groupHasValue(name) {
+  return Boolean(form.querySelector(`input[name="${name}"]:checked`));
+}
+
 function validateStep(index) {
   const step = document.querySelector(`.step[data-step="${index}"]`);
-  if (!step) return false;
+  const error = step?.querySelector(".step-error");
+  let valid = true;
 
   if (index === 0) {
     const role = document.querySelector("#roleTitle");
-    const valid = role.value.trim().length > 1;
-    role.setAttribute("aria-invalid", String(!valid));
-    if (!valid) {
-      role.focus();
-      return false;
-    }
-    return true;
+    const roleFunction = document.querySelector("#roleFunction");
+    valid = role.value.trim().length > 1 && roleFunction.value !== "" && groupHasValue("decisionContext");
+    role.setAttribute("aria-invalid", String(role.value.trim().length <= 1));
+    roleFunction.setAttribute("aria-invalid", String(roleFunction.value === ""));
+    if (!valid && role.value.trim().length <= 1) role.focus();
+    else if (!valid && roleFunction.value === "") roleFunction.focus();
   }
 
-  if (index >= 1 && index <= 5) {
-    const dimension = dimensions[index - 1];
-    const complete = dimension.questions.every((_, questionIndex) => form.elements[`${dimension.id}-${questionIndex}`].value !== "");
-    const error = step.querySelector(".step-error");
-    error.hidden = complete;
-    if (!complete) {
-      const incompleteCard = [...step.querySelectorAll(".question-card")].find((card) => !card.querySelector("input:checked"));
-      incompleteCard?.querySelector("input")?.focus();
-    }
-    return complete;
+  if (index === 1) {
+    valid = selectedValues("changes").length > 0 && selectedValues("timeAreas").length > 0;
   }
 
-  return true;
+  if (index === 2) {
+    valid = groupHasValue("repeatLevel") && groupHasValue("judgmentLevel");
+  }
+
+  if (index === 3) {
+    valid = groupHasValue("sameProfile") && groupHasValue("likelyDecision");
+  }
+
+  if (error) error.hidden = valid;
+  return valid;
 }
 
 function formSnapshot() {
-  const data = new FormData(form);
-  return Object.fromEntries(data.entries());
+  const values = {};
+  [...form.elements].forEach((control) => {
+    if (!control.name) return;
+    if (control.type === "checkbox") {
+      if (!Array.isArray(values[control.name])) values[control.name] = [];
+      if (control.checked) values[control.name].push(control.value);
+    } else if (control.type === "radio") {
+      if (control.checked) values[control.name] = control.value;
+    } else {
+      values[control.name] = control.value;
+    }
+  });
+  return values;
 }
 
 function saveState() {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ currentStep, values: formSnapshot(), tasks, completed: !resultsSection.hidden }));
   } catch (_) {
-    // The assessment still works if browser storage is unavailable.
+    // The check still works when browser storage is unavailable.
   }
 }
 
@@ -198,13 +261,12 @@ function restoreState() {
     const state = JSON.parse(localStorage.getItem(STORAGE_KEY));
     if (!state) return;
     Object.entries(state.values || {}).forEach(([name, value]) => {
-      const control = form.elements[name];
-      if (!control) return;
-      if (control instanceof RadioNodeList) {
-        [...control].forEach((item) => { item.checked = item.value === value; });
-      } else {
-        control.value = value;
-      }
+      const controls = [...form.querySelectorAll(`[name="${name}"]`)];
+      controls.forEach((control) => {
+        if (control.type === "checkbox") control.checked = Array.isArray(value) && value.includes(control.value);
+        else if (control.type === "radio") control.checked = control.value === value;
+        else control.value = value;
+      });
     });
     tasks = Array.isArray(state.tasks) ? state.tasks : [];
     renderTaskBoard();
@@ -219,118 +281,174 @@ function restoreState() {
   }
 }
 
-function getScores() {
-  return dimensions.map((dimension) => {
-    const score = dimension.questions.reduce((sum, _, questionIndex) => {
-      return sum + Number(form.elements[`${dimension.id}-${questionIndex}`].value || 0);
-    }, 0);
-    return { ...dimension, score, max: 6, note: form.elements[`${dimension.id}-note`].value.trim() };
-  });
-}
+function getPosition() {
+  const changes = selectedValues("changes").filter((value) => value !== "Nothing significant");
+  const repeatLevel = form.elements.repeatLevel.value;
+  const sameProfile = form.elements.sameProfile.value;
+  const likelyDecision = form.elements.likelyDecision.value;
 
-function scoreBand(score) {
-  if (score <= 2) return { label: "Needs definition", className: "low" };
-  if (score <= 4) return { label: "Partly defined", className: "medium" };
-  return { label: "Clear", className: "high" };
-}
-
-function readinessBand(total) {
-  if (total <= 12) {
+  if (
+    sameProfile === "No" ||
+    likelyDecision === "Redesign the role" ||
+    (changes.length >= 3 && repeatLevel !== "Very little")
+  ) {
     return {
-      title: "Redesign before recruitment",
-      text: "Too much of the future role remains undefined. Reusing the existing brief could hard-code work, criteria or assumptions that are already changing."
+      key: "rethink",
+      label: "RETHINK",
+      title: "Rethink the role before taking action",
+      text: "The work appears to have changed enough that replacing the role like for like could solve yesterday’s problem. Start with the work, then decide what should be hired, developed or redesigned."
     };
   }
-  if (total <= 21) {
+
+  if (
+    sameProfile === "Not sure" ||
+    changes.length > 0 ||
+    likelyDecision === "Update the role first" ||
+    likelyDecision === "Develop someone internally" ||
+    likelyDecision === "We are not sure yet"
+  ) {
     return {
-      title: "Refine before action",
-      text: "The role has a credible core, but important questions remain. Resolve the lowest-scoring areas before committing to a recruitment or development route."
+      key: "update",
+      label: "UPDATE",
+      title: "Update the role before you decide",
+      text: "The core role may still be right, but parts of the work, skills or measures of success need to be refreshed before you recruit or make a development decision."
     };
   }
+
   return {
-    title: "Ready to validate",
-    text: "The future role is comparatively clear. Test your assumptions with the people closest to the work and with current market evidence before proceeding."
+    key: "keep",
+    label: "CHECK",
+    title: "The role may still be right—check it",
+    text: "You have not identified a major reason to redesign the role. Validate the current brief with the people closest to the work and make sure it reflects how the role will operate next."
   };
 }
 
-function decisionCopy(decision) {
-  const guidance = {
-    "Recruit broadly as it stands": "Validate the brief against the actual future tasks and the external market before launch. Clarity should now be tested, not assumed.",
-    "Update the brief before recruiting": "Rewrite the outcomes, task bundle and evidence of capability first. This reduces the risk of selecting against yesterday’s version of the role.",
-    "Develop capability internally": "Identify who already holds adjacent capability, what can be learned, and what work or support must change around them.",
-    "Redesign the work first": "Map the tasks before deciding the role. Separate human-led, AI-supported, automated and removable work, then reconsider ownership.",
-    "Use a blended approach": "Treat the answer as an operating decision: combine targeted hiring with internal development, task redesign and appropriate technology."
-  };
-  return guidance[decision] || guidance["Use a blended approach"];
+function getProfile() {
+  return functionProfiles[document.querySelector("#roleFunction").value] || functionProfiles.Other;
+}
+
+function technologyIdeas(profile) {
+  const selected = selectedValues("timeAreas");
+  const ideas = selected.map((area) => timeAreaInsights[area]).filter(Boolean);
+  profile.opportunities.forEach((idea) => {
+    if (ideas.length < 3 && !ideas.includes(idea)) ideas.push(idea);
+  });
+  return ideas.slice(0, 3);
+}
+
+function nextActions(position, role) {
+  if (position.key === "rethink") {
+    return [
+      { title: "Do not reuse the old brief yet", text: `Write down the work ${role} must deliver now before discussing the person or previous job description.` },
+      { title: "Map the ten biggest tasks", text: "Mark each task Keep human-led, Support with AI, Automate, or Reduce. Focus first on high-impact work." },
+      { title: "Choose the right mix", text: "Decide what should be recruited, developed internally, supported by technology or moved elsewhere." }
+    ];
+  }
+  if (position.key === "update") {
+    return [
+      { title: "Rewrite the purpose", text: `Complete one sentence: “Over the next 12–24 months, ${role} exists to…”` },
+      { title: "Update the task list", text: "Remove work that has reduced, add work that is growing, and show clearly where technology will support the person." },
+      { title: "Split the skills", text: "Separate what someone must bring on day one from what a capable person could learn after joining." }
+    ];
+  }
+  return [
+    { title: "Check the purpose", text: `Confirm the three outcomes ${role} must deliver over the next 12–24 months.` },
+    { title: "Test the brief", text: "Ask the current team where the written role no longer matches the work they actually do." },
+    { title: "Check the evidence", text: "Make sure every hiring requirement connects directly to an important part of the role." }
+  ];
+}
+
+function signalList() {
+  const changes = selectedValues("changes").filter((value) => value !== "Nothing significant");
+  const areas = selectedValues("timeAreas");
+  const repeat = form.elements.repeatLevel.value;
+  const judgment = form.elements.judgmentLevel.value;
+  const same = form.elements.sameProfile.value;
+  return [
+    changes.length ? `${changes.length} change${changes.length === 1 ? "" : "s"} affecting the role` : "No major external change selected",
+    `${areas.length} area${areas.length === 1 ? "" : "s"} taking most of the role’s time`,
+    `${repeat} of the work is repeated or follows clear rules`,
+    `${judgment} of the work depends on judgment, trust or accountability`,
+    same === "Yes" ? "You would broadly hire the same profile again" : same === "No" ? "You would not hire the same profile again" : "You are unsure whether the same profile is still right"
+  ];
+}
+
+function renderList(items) {
+  return `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
 }
 
 function buildResults(scroll = true) {
-  for (let index = 0; index <= 5; index += 1) {
+  for (let index = 0; index <= 3; index += 1) {
     if (!validateStep(index)) {
       showStep(index);
       return;
     }
   }
 
-  const scores = getScores();
-  const total = scores.reduce((sum, item) => sum + item.score, 0);
-  const band = readinessBand(total);
+  const position = getPosition();
+  const profile = getProfile();
   const role = document.querySelector("#roleTitle").value.trim();
   const company = document.querySelector("#companyName").value.trim();
-  const roleFunction = document.querySelector("#roleFunction").value;
+  const roleFunction = document.querySelector("#roleFunction").value || "Other";
   const context = form.elements.decisionContext.value;
-  const likelyDecision = form.elements.likelyDecision.value;
-  const openQuestion = document.querySelector("#openQuestion").value.trim();
+  const direction = form.elements.likelyDecision.value;
+  const actions = nextActions(position, role);
 
   document.querySelector("#resultRole").textContent = role;
-  document.querySelector("#resultContext").textContent = [company, roleFunction, context].filter(Boolean).join(" · ") || "A practical decision aid—not a grade or psychometric assessment.";
-  document.querySelector("#totalScore").textContent = total;
-  document.querySelector("#scoreRing").style.setProperty("--score-angle", `${(total / 30) * 360}deg`);
-  document.querySelector("#scoreRing").setAttribute("aria-label", `Role readiness score ${total} out of 30`);
-  document.querySelector("#readinessTitle").textContent = band.title;
-  document.querySelector("#readinessText").textContent = band.text;
-  document.querySelector("#decisionResult").textContent = likelyDecision;
-  document.querySelector("#decisionGuidance").textContent = decisionCopy(likelyDecision);
+  document.querySelector("#resultContext").textContent = [company, roleFunction, context].filter(Boolean).join(" · ");
+  document.querySelector("#signalWord").textContent = position.label;
+  document.querySelector("#signalRing").className = `score-ring signal-ring signal-${position.key}`;
+  document.querySelector("#signalRing").setAttribute("aria-label", position.title);
+  document.querySelector("#readinessTitle").textContent = position.title;
+  document.querySelector("#readinessText").textContent = position.text;
+  document.querySelector("#decisionResult").textContent = direction;
+  document.querySelector("#decisionSignals").innerHTML = renderList(signalList());
 
-  document.querySelector("#dimensionResults").innerHTML = scores.map((item) => {
-    const itemBand = scoreBand(item.score);
-    return `
-      <article class="dimension-card ${itemBand.className}">
-        <div class="dimension-card-head">
-          <span>${item.title}</span>
-          <strong>${item.score}/6</strong>
-        </div>
-        <div class="mini-track"><span style="width:${(item.score / 6) * 100}%"></span></div>
-        <p class="dimension-status">${itemBand.label}</p>
-        <p>${item.description}</p>
-        ${item.note ? `<div class="saved-note"><strong>Your note</strong><span>${escapeHtml(item.note)}</span></div>` : ""}
-      </article>`;
-  }).join("");
+  const insightGroups = [
+    { number: "01", label: "Where technology could help", title: "Examine these areas", items: technologyIdeas(profile) },
+    { number: "02", label: "What to keep human", title: "Protect this work", items: profile.human },
+    { number: "03", label: "What may matter more", title: "Build or find these capabilities", items: profile.capabilities }
+  ];
 
-  const priorities = [...scores].sort((a, b) => a.score - b.score).slice(0, 3);
-  document.querySelector("#priorityActions").innerHTML = priorities.map((item, index) => `
-    <article>
-      <span class="priority-number">0${index + 1}</span>
-      <p class="result-label">${item.title}</p>
-      <h4>${item.actionTitle}</h4>
-      <p>${item.action}</p>
+  document.querySelector("#roleInsights").innerHTML = insightGroups.map((group) => `
+    <article class="role-insight-card">
+      <span class="insight-number">${group.number}</span>
+      <p class="result-label">${group.label}</p>
+      <h4>${group.title}</h4>
+      ${renderList(group.items)}
     </article>`).join("");
 
-  const fallbackQuestion = `What must change before ${role} is the right answer to the work ahead?`;
-  document.querySelector("#workingQuestion").textContent = openQuestion || fallbackQuestion;
-  document.querySelector("#summaryHeading").textContent = openQuestion ? "The question you need to resolve next" : "The question to resolve next";
+  document.querySelector("#priorityActions").innerHTML = actions.map((action, index) => `
+    <article>
+      <span class="priority-number">0${index + 1}</span>
+      <p class="result-label">Next action</p>
+      <h4>${escapeHtml(action.title)}</h4>
+      <p>${escapeHtml(action.text)}</p>
+    </article>`).join("");
 
-  document.querySelector("#formScore").value = `${total}/30 — ${band.title}`;
-  document.querySelector("#formDirection").value = likelyDecision;
+  const questions = {
+    rethink: "What work needs to be done—and what is the best mix of people, skills and technology to do it?",
+    update: "Which parts of this role should change before you use the current job description again?",
+    keep: "What would make this role more effective without changing its core purpose?"
+  };
+  document.querySelector("#workingQuestion").textContent = questions[position.key];
+  document.querySelector("#formPosition").value = position.title;
+  document.querySelector("#formDirection").value = direction;
   document.querySelector("#formCompany").value = company;
   document.querySelector("#formRole").value = role;
-  document.querySelector("#formPriority").value = openQuestion;
+  document.querySelector("#formPriority").value = questions[position.key];
 
+  renderTaskSuggestions(roleFunction);
   resultsSection.hidden = false;
   document.querySelector(".assessment-shell").classList.add("assessment-complete");
-  renderTaskBoard();
   saveState();
   if (scroll) resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function renderTaskSuggestions(roleFunction) {
+  const suggestions = taskSuggestionsByFunction[roleFunction] || taskSuggestionsByFunction.Other;
+  document.querySelector("#taskSuggestions").innerHTML = suggestions.map((suggestion) => `
+    <button type="button" data-task-suggestion="${escapeHtml(suggestion)}">${escapeHtml(suggestion)}</button>`).join("");
 }
 
 function renderTaskBoard() {
@@ -344,7 +462,7 @@ function renderTaskBoard() {
             <div><strong>${escapeHtml(task.name)}</strong><small>${task.impact} importance</small></div>
             <button type="button" data-remove-task="${task.id}" aria-label="Remove ${escapeHtml(task.name)}">×</button>
           </li>`).join("")
-      : `<li class="empty-task">No tasks added yet</li>`;
+      : `<li class="empty-task">No tasks added</li>`;
     return `
       <section class="task-column task-${key}">
         <div class="task-column-head"><div><h4>${meta.title}</h4><p>${meta.description}</p></div><span>${categoryTasks.length}</span></div>
@@ -364,15 +482,14 @@ function escapeHtml(value) {
 
 function copySummary() {
   const role = document.querySelector("#roleTitle").value.trim();
-  const scores = getScores();
-  const total = scores.reduce((sum, item) => sum + item.score, 0);
-  const band = readinessBand(total);
-  const decision = form.elements.likelyDecision.value;
-  const priorities = [...scores].sort((a, b) => a.score - b.score).slice(0, 3);
+  const position = getPosition();
+  const profile = getProfile();
+  const direction = form.elements.likelyDecision.value;
+  const actions = nextActions(position, role);
   const taskLines = tasks.length
     ? `\n\nTask map\n${tasks.map((task) => `- ${task.name}: ${categoryMeta[task.category].title} (${task.impact})`).join("\n")}`
     : "";
-  const summary = `${role} — Role Readiness Brief\n\nReadiness: ${total}/30 — ${band.title}\nCurrent direction: ${decision}\n\nPriority actions\n${priorities.map((item) => `- ${item.actionTitle}: ${item.action}`).join("\n")}${taskLines}\n\nGenerated with the Next Generation Role Readiness Check.`;
+  const summary = `${role} — Role Readiness Brief\n\nLikely position: ${position.title}\nCurrent direction: ${direction}\n\nWhere technology could help\n${technologyIdeas(profile).map((item) => `- ${item}`).join("\n")}\n\nKeep human-led\n${profile.human.map((item) => `- ${item}`).join("\n")}\n\nNext actions\n${actions.map((item) => `- ${item.title}: ${item.text}`).join("\n")}${taskLines}\n\nGenerated with the Next Generation Role Readiness Check.`;
 
   navigator.clipboard.writeText(summary).then(() => {
     const button = document.querySelector("#copySummary");
@@ -390,14 +507,10 @@ function resetAssessment() {
   tasks = [];
   resultsSection.hidden = true;
   document.querySelector(".assessment-shell").classList.remove("assessment-complete");
-  document.querySelector("#roleTitle").setAttribute("aria-invalid", "false");
   renderTaskBoard();
   showStep(0);
   history.replaceState(null, "", location.pathname);
 }
-
-renderQuestionSteps();
-renderTaskBoard();
 
 form.addEventListener("click", (event) => {
   const next = event.target.closest(".next-step");
@@ -406,9 +519,26 @@ form.addEventListener("click", (event) => {
   if (previous) showStep(currentStep - 1);
 });
 
-form.addEventListener("change", saveState);
-form.addEventListener("input", saveState);
+form.addEventListener("change", (event) => {
+  if (event.target.name === "changes") {
+    const none = form.querySelector('input[name="changes"][value="Nothing significant"]');
+    if (event.target === none && none.checked) {
+      form.querySelectorAll('input[name="changes"]:not([value="Nothing significant"])').forEach((input) => { input.checked = false; });
+    } else if (event.target.checked) {
+      none.checked = false;
+    }
+  }
 
+  if (event.target.name === "timeAreas" && selectedValues("timeAreas").length > 3) {
+    event.target.checked = false;
+    const limitMessage = document.querySelector("#timeLimitMessage");
+    limitMessage.hidden = false;
+    setTimeout(() => { limitMessage.hidden = true; }, 2200);
+  }
+  saveState();
+});
+
+form.addEventListener("input", saveState);
 document.querySelector("#showResults").addEventListener("click", () => buildResults(true));
 document.querySelector("#printBrief").addEventListener("click", () => window.print());
 document.querySelector("#copySummary").addEventListener("click", copySummary);
@@ -432,6 +562,13 @@ document.querySelector("#taskForm").addEventListener("submit", (event) => {
   taskName.focus();
 });
 
+document.querySelector("#taskSuggestions").addEventListener("click", (event) => {
+  const button = event.target.closest("[data-task-suggestion]");
+  if (!button) return;
+  document.querySelector("#taskName").value = button.dataset.taskSuggestion;
+  document.querySelector("#taskName").focus();
+});
+
 document.querySelector("#taskBoard").addEventListener("click", (event) => {
   const button = event.target.closest("[data-remove-task]");
   if (!button) return;
@@ -441,4 +578,5 @@ document.querySelector("#taskBoard").addEventListener("click", (event) => {
 });
 
 document.querySelector("#year").textContent = new Date().getFullYear();
+renderTaskBoard();
 restoreState();
