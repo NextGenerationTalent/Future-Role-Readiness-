@@ -1,0 +1,49 @@
+# Next Generation Role Readiness Check
+
+An interactive management tool for assessing whether an important role should be recruited as it stands, refined, developed internally or redesigned as AI and automation change the work.
+
+## What the site includes
+
+- Five-dimension Role Readiness assessment
+- Tailored readiness position and decision guidance
+- Three priority actions based on the lowest-scoring areas
+- Interactive task-shift mapper
+- Printable Role Readiness Brief
+- Local browser storage so working answers stay on the user's device
+- Netlify form for requesting a complimentary Role Review
+- Responsive and accessible static design
+- No cookies, analytics or third-party scripts
+
+## Deploy to Netlify from GitHub
+
+1. Create a new GitHub repository.
+2. Upload or push the complete contents of this folder.
+3. In Netlify, select **Add new site → Import an existing project**.
+4. Choose the GitHub repository.
+5. Netlify will detect `netlify.toml`; no build command is required and the publish directory is `dist`.
+6. Deploy the site.
+
+Netlify will detect the `role-review` form during deployment. Form submissions will appear under **Forms** in the Netlify site dashboard. Configure submission notifications in Netlify if email alerts are required.
+
+## GitHub Pages
+
+The included workflow publishes the `dist` folder whenever the `main` branch is updated. In the repository, open **Settings → Pages** and set the source to **GitHub Actions**.
+
+The Role Review form requires Netlify Forms. GitHub Pages can display the site, assessment and printable brief, but it cannot process that form by itself.
+
+## Content and brand updates
+
+- Main page: `dist/index.html`
+- Assessment questions and scoring: `dist/app.js`
+- Visual design: `dist/styles.css`
+- Netlify settings and security headers: `netlify.toml`
+
+The header currently uses a clean text treatment because no official logo asset was supplied. Replace the `.brand` element in `dist/index.html` with the approved Next Generation logo when available.
+
+## Privacy behaviour
+
+Assessment answers and task-map entries are saved only in the user's browser using `localStorage`. They are not included in the Netlify form submission. Only information entered directly into the Role Review request form is submitted.
+
+## Scoring note
+
+The score reflects role-definition clarity across five lenses. It is a structured management prompt, not a psychometric instrument, legal opinion, workforce-displacement prediction or assessment of the current role holder.
